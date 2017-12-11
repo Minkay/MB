@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android</title>
+
+    <!-- Page styles -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/validation.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <!--<script type="text/javascript" src="js/datos.js"></script>-->
+    <link rel="stylesheet" href="css/jquery-ui.css">    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script>
+      $( function() {
+        $( "#accordion" ).accordion();
+      } );
+
+
+      function cargareli(eli) {
+    
+                $.get('http://minkay.com.pe/appsedes/delete.php', {eli : eli},
+                 function(data){
+                        if (data != "[]") {
+                           history.back(1);
+                            alert('Solicitud eliminada.');
+                           
+                           
+                        }else{
+                             history.back(1);
+                          alert('Aun no obtiene una respuesta del administrador.');                    
+                          
+
+                        }
+
+                    return false;
+                });
+            }
+
+
+     function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+   }
+
+
+
+   $(document).ready(function () {
+    
+
+
+     var roe = getParameterByName('eli');
+     
+     cargareli(roe);
+    //cargarPaises();
+    
+});
+
+
+  </script>
+    <style>
+            #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+            }
+
+            body {
+              overflow: hidden;
+            }
+/* preloader */
+            #preloader {
+            position: fixed;
+            top:0; left:0;
+            right:0; bottom:0;
+            background: #00aff2;
+            z-index: 100;
+            }
+            #loader {
+            width: 209px;
+            height: 209px;
+            position: absolute;
+            left: 35%;
+            top: 41%;
+            background: url(images/loader2.gif) no-repeat center 0;
+            margin:-50px 0 0 -50px;
+            }
+
+
+    </style>
+   
+  </head>
+  <body>
+
+ 
+  </body>
+</html>

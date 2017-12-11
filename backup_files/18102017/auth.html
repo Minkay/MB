@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mibanco</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <!-- 
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png"> -->
+    <link rel="stylesheet" href="styles/vendor-8a1c5370cd.css">
+    <link rel="stylesheet" href="styles/auth-fb39c96c25.css">
+</head>
+
+<body ng-app="auth">
+    <main class="login auth-main" ng-controller="authCtrl">
+        <div class="auth-block">
+            <h1>Iniciar sesión</h1>
+            <!-- <a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a> -->
+            <form class="form-horizontal" name="frmlLogin">
+                <div class="form-group" ng-class="{'has-error' : frmlLogin.no_usuario.$dirty &&  frmlLogin.no_usuario.$error.required}">
+                    <label for="no_usuario" class="col-sm-2 control-label">Usuario</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="no_usuario" class="form-control" id="no_login" placeholder="Usuario" ng-model="usuarioRequest.no_login" required="required">
+                        <small ng-show="frmlLogin.no_usuario.$dirty && frmlLogin.no_usuario.$error.required" class="text-danger">*Campo requerido</small>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : frmlLogin.no_password.$dirty && frmlLogin.no_password.$error.required }">
+                    <label for="no_password" class="col-sm-2 control-label">Clave</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="no_password" name="no_password" ng-model="usuarioRequest.no_password" class="form-control" placeholder="Clave" required="required">
+                        <small ng-show="frmlLogin.no_password.$dirty && frmlLogin.no_password.$error.required" class="text-danger">*Campo requerido</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 ">
+                        <div id="alert-mess" uib-alert ng-if="message!=null" class="alert alert-danger" close="closeAlert()">{{message}}</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default btn-auth" ng-disabled="frmlLogin.$invalid" ng-click="loginUsuario()">Iniciar</button>
+                        <!-- <a href class="forgot-pass">Forgot password?</a> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="scripts/vendor-01d03be25c.js"></script>
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+    <script src="scripts/app-b9ce37a518.js"></script>
+    <script>
+    var appAuth = angular.module('auth', ['LocalStorageModule', 'ngAnimate',
+        'ui.bootstrap',
+        'ui.sortable',
+        'ui.router',
+        'ngResource'
+    ]);
+
+
+    appAuth.controller('authCtrl', ['$scope', '$http', 'localStorageService', '$location',
+        function($scope, $http, localStorageService, $location) {
+
+            $scope.usuarioRequest = { id_usuario: null,id_rol_usuario:null, no_login: null, no_password: null, nombre_apellido: null };
+            $scope.usuario = [];
+            $scope.message = null;
+
+
+            $scope.loginUsuario = function() {
+
+                var req = {
+                    method: 'POST',
+                    url: 'https://minkay.com.pe/mibanco/controller/loginUsuario.php',
+                    // url: 'http://localhost/mibanco/controller/loginUsuario.php',
+                    // url: 'http://localhost:82/mibanco/controller/loginUsuario.php',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    data: $scope.usuarioRequest
+                }
+                $http(req).then(function(result) {
+                    $scope.usuario = result.data.usuario;
+                    if ($scope.usuario.length > 0) {
+                        for (var i = 0; i < $scope.usuario.length; i++) {
+                            $scope.usuarioRequest.id_usuario = $scope.usuario[i].id_usuario;
+                            $scope.usuarioRequest.id_rol_usuario = $scope.usuario[i].id_rol_usuario;
+                            $scope.usuarioRequest.no_login = $scope.usuario[i].no_login;
+                            $scope.usuarioRequest.nombre_apellido = $scope.usuario[i].no_nombre + ' ' + $scope.usuario[i].no_apellido;
+                        }
+                        localStorageService.set('id_usuario', $scope.usuarioRequest.id_usuario);
+                        localStorageService.set('id_rol_usuario', $scope.usuarioRequest.id_rol_usuario);
+                        localStorageService.set('nombre_apellido', $scope.usuarioRequest.nombre_apellido);
+                        window.location.href = "index.html";
+                        // $location.url('/index.html');
+                    } else {
+                        $scope.message = "Usuario o contraseña incorrectos"
+                    }
+                }, function() {
+                    console.error(error);
+                });
+
+            };
+            $scope.closeAlert = function() {
+                $scope.message = null;
+            };
+        }
+    ])
+    </script>
+</body>
+
+</html>

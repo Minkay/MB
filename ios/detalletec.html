@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android</title>
+
+    <!-- Page styles -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/validation.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <!--<script type="text/javascript" src="js/datos.js"></script>-->
+    <link rel="stylesheet" href="css/jquery-ui.css">    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script>
+      $( function() {
+        $( "#accordion" ).accordion();
+      } );
+
+
+      function cargardet(sol) {
+    
+                $.post('https://www.minkay.com.pe/appsedes/det.php', {sol : sol}, 
+                 function(data){
+                        if (data != "[]") {
+                            var item = $.parseJSON(data);
+                            $.each(item, function (i, valor) {                                
+                                if (valor.nombre !== null) {
+                                    
+                                    $("#nom").val(valor.no_nombre+ " " +valor.no_apellido);
+                                    $("#apel").val(valor.no_piso);
+                                    $("#divi").val(valor.no_area);
+                                    $("#gere").val(valor.no_cargo);
+                                    $("#sed").val(valor.no_sede);
+                                    $(".avata").append("<img class='media-object' src='" +valor.img_solicitud+"' style='width:80%;border: 2px solid #47669c;'>");
+                                    $("#res").text(valor.no_descripcion);
+                                    //$("#res").text("Estimado " +valor.no_nombre + " " +valor.no_apellido + " , para informarte que tu solicitud no corresponde a AdS; puedes dirigirte a Soporte microinformatico al anexo 8064, Seguridad física al anexo 8098, Recepción al anexo 8204 / 8200  . Muchas gracias.");
+
+                                   
+                                }
+                            });
+                        }
+
+                    return false;
+                });
+            }
+
+
+     function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+   }
+
+
+
+   $(document).ready(function () {
+    
+
+
+     var ro = getParameterByName('sol');
+     cargardet(ro);
+    //cargarPaises();
+    
+});
+
+
+  </script>
+    <style>
+            #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+            }
+
+            body {
+              overflow: hidden;
+            }
+/* preloader */
+            #preloader {
+            position: fixed;
+            top:0; left:0;
+            right:0; bottom:0;
+            background: #00aff2;
+            z-index: 100;
+            }
+            #loader {
+            width: 209px;
+            height: 209px;
+            position: absolute;
+            left: 35%;
+            top: 41%;
+            background: url(images/loader2.gif) no-repeat center 0;
+            margin:-50px 0 0 -50px;
+            }
+
+
+    </style>
+   
+  </head>
+  <body>
+
+  <div id="preloader">
+    <div id="loader">&nbsp;</div>
+</div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="images/android-logo.png">
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="android-header-spacer mdl-layout-spacer"></div>
+        
+          <!-- Navigation -->
+          <div class="android-navigation-container">
+            <nav class="android-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">DOC. MANTENIMIENTO PERIODICO</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tablets</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Play</a>
+            </nav>
+          </div>
+          <span class="android-mobile-title mdl-layout-title">
+            <center style="padding-left: 38%;">ESTADO</center>
+          </span>
+          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <li class="mdl-menu__item">5.0 Lollipop</li>
+            <li class="mdl-menu__item">4.4 KitKat</li>
+            <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
+            <li class="mdl-menu__item">Android History</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="android-content mdl-layout__content">
+        <a name="top"></a>
+       
+         <form method="post" id="registro-form">
+            
+                    <br>
+                      <div class="row">
+                        
+                                 <div class="col-12 col-md-4">
+                                       <div class="avata" style="text-align: center;">
+                                       
+                                       </div>
+                                 </div>
+                                 <div class="col-10 col-md-4" style="margin: 34px;">
+                                            <div class="form-group row">
+                                               <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                    <div class="input-group-addon">Usuario</div>
+                                                    <input type="text" class="form-control" id="nom" style="background: white;" readonly="readonly">
+                                                  </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                    <div class="input-group-addon">No. Piso</div>
+                                                    <input type="text" class="form-control" id="apel" style="background: white;" readonly="readonly">
+                                                  </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                    <div class="input-group-addon">Sede </div>
+                                                    <input type="text" class="form-control" id="sed" style="background: white;" readonly="readonly">
+                                                  </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                    <div class="input-group-addon">Division</div>
+                                                    <input type="text" class="form-control" id="divi" style="background: white;" readonly="readonly">
+                                                  </div>
+                                            </div>
+                                             <div class="form-group row">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                    <div class="input-group-addon">Gerencia</div>
+                                                    <input type="text" class="form-control" id="gere" style="background: white;" readonly="readonly">
+                                                  </div>
+                                            </div>
+                                            
+                        
+                                 </div>
+                                 <div class="col-12 col-md-8">
+                                            <div class="form-group row" style="display: none;">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                  <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="padding-right: 36px;padding-left: 36px;">                                                 
+                                                    <p id="des" style="display: none;font-family: century gothic;font-weight: bolder;color: #47669c;text-align: justify;margin-bottom: 10px;" ></p>
+                                                  </div>
+                                            </div>
+                                              
+                                             <div class="form-group" style="margin-left: 5%;margin-right: 5%;">
+                                                <label for="exampleTextarea" style="font-weight: bolder;">Solicitud enviada</label>
+                                                <textarea id="res" class="form-control" rows="3" style="font-family:century gothic;color: black;text-align: justify;
+                                                  padding: 0px;border: 1px solid white;background: white;" readonly="readonly"></textarea>
+                                              </div>
+
+                                     <center><a href="javascript:history.back(1)" class="btn btn-danger" style="width: 40%;"> REGRESAR </a></center>   
+                                 </div>
+                                
+                                 
+                      </div>
+                    
+         
+             <input type="hidden" class="form-control" id="usu" name="usu" value="" placeholder="Ingresar personal">
+              
+</form>
+
+      </div>
+    </div>
+    <script src="js/material.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+  $('#preloader').fadeOut('slow');
+  $('body').css({'overflow':'visible'});
+})
+</script>
+  </body>
+</html>

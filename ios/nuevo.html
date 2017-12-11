@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android</title>
+
+    <!-- Page styles -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">    
+    
+    <script src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/validation.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery-ui.js"></script>
+   <!-- <script type="text/javascript" src="js/script.js"></script>-->
+    <script src="js/logistica.js"></script>
+    <script src="js/nuevo.js"></script>    
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+
+    body {
+    overflow: hidden;
+}
+/* preloader */
+#preloader {
+    position: fixed;
+    top:0; left:0;
+    right:0; bottom:0;
+    background: #00aff2;
+    z-index: 100;
+}
+#loader {
+      width: 209px;
+    height: 209px;
+    position: absolute;
+    left: 35%;
+    top: 41%;
+    background: url(images/loader2.gif) no-repeat center 0;
+    margin:-50px 0 0 -50px;
+}
+    </style>
+   
+  </head>
+  <body>
+
+  <div id="preloader">
+    <div id="loader">&nbsp;</div>
+</div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="images/android-logo.png" >
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          
+        
+          <!-- Navigation -->
+          
+          <span class="android-mobile-title mdl-layout-title">
+              NUEVO USUARIO
+          </span>
+          
+         
+        </div>
+      </div>
+
+
+      <div class="android-content mdl-layout__content">
+        <a name="top"></a>
+       <div class="container"><br>
+          <center>
+              <img src="img/ogo.png" style="width:80%;">
+          </center>
+            
+           
+           <form class="form-horizontal" id="nuevore" method="post" >
+                <div class="form-group">
+                <br><!--<input type="hidden" class="form-control" id="inputEmail3" name="proviene"  value="App">-->
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" name="nombres" placeholder="Nombres" required="required" style="border-color: #47669c;">
+                  </div>
+                </div>
+                 <div class="form-group">
+                <br>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" name="apellidos" placeholder="Apellidos" required="required" style="border-color: #47669c;">
+                  </div>
+                </div>
+                 <div class="form-group">
+                <br>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" name="usuario" placeholder="Usuario" required="required" style="border-color: #47669c;">
+                  </div>
+                </div>
+                 <div class="form-group">
+                <br>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="inputEmail3" name="password" placeholder="Contraseña" required="required" style="border-color: #47669c;">
+                  </div>
+                </div>
+                <div class="form-group">
+               <br>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputPassword3" name="telefono" placeholder="Teléfono" required="required" style="border-color: #47669c;">
+                  </div>
+                </div>
+                  <div class="form-group">
+                 <br>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" name="email" placeholder="Email" required="required" style="border-color: #47669c;">
+                  </div>
+                </div>
+                <div class="">
+                  <div style="display: inline-block;width: 48%;">
+                  
+                   <select class="form-control" name="area" id="area" required="required">
+                         
+                    </select>
+                   
+                  
+                  </div>
+                   <div style="display: inline-block;width: 48%;">
+                  
+                       <select class="form-control" name="cargo" id="cargo" required="required">
+                         
+                        </select>
+                  </div>
+                </div>
+
+                 <div class="">
+                  <div style="display: inline-block;width: 48%;">
+                    <br>
+                    <select class="form-control" name="piso" id="piso" required="required">
+                          <option value="0">- Piso -</option>
+                          <option value="zotano 2">S2</option>
+                          <option value="zotano 1">S1</option>
+                          <option value="piso 1">1</option>
+                          <option value="piso 2">2</option>
+                          <option value="piso 3">3</option>
+                          <option value="piso 4">4</option>
+                          <option value="piso 5">5</option>
+                          <option value="piso 6">6</option>
+                          <option value="piso 7">7</option>
+                          <option value="piso 8">8</option>
+                          <option value="piso 9">9</option>
+                          <option value="piso 10">10</option>
+                          <option value="piso 11">11</option>
+                          <option value="piso 12">12</option>
+                        </select>
+                   
+                  
+                  </div>
+                   <div style="display: inline-block;width: 48%;">
+                  
+                       <select class="form-control" name="sede" id="sede" required="required">
+                          <option value="0">- Sede -</option>
+                          <option value="1">Aramburú</option>
+                          <option value="2">Orué</option>
+                          <option value="3">Jesus María</option>
+                          
+                        </select>
+                  </div>
+                </div>
+                 <div class="">
+                  <div style="display: inline-block;width: 48%;">
+                  <br>
+                      <select class="form-control" name="sexo" id="sexo" required="required">
+                          <option value="0">- Sexo -</option>
+                          <option value="Masculino">Masculino</option>
+                          <option value="Femenino">Femenino</option>                          
+                        </select>                  
+                  </div>
+                   <div style="display: inline-block;width: 48%;">                     
+                          <input type="text" class="form-control" id="inputPassword3" name="edad" placeholder="Código Trabajador" required="required">
+                   </div>
+                </div>
+               
+                
+               <br><br><br>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                  <center>
+                    <button type="submit" class="btn btn-danger" style="width: 47%;border-color: #47669c;background-color: #47669c;">
+                     <span class="glyphicon glyphicon-upload"></span> Enviar datos</button>
+                    <a href="presentacion.html" class="btn btn-success" style="width: 47%;background-color: white;border-color: #47669c;color: #47669c;"><span class="glyphicon glyphicon-cog"></span> Principal</a>
+                  </center>
+                  </div>
+                </div><br><br>
+              </form>
+
+      </div>
+      </div>
+    </div>
+    <script src="js/material.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+  $('#preloader').fadeOut('slow');
+  $('body').css({'overflow':'visible'});
+})
+</script>
+  </body>
+</html>

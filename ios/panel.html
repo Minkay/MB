@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android</title>
+
+    <!-- Page styles -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/styles.css">    
+    <link rel="stylesheet" href="css/bootstrap.min2.css">
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/functions.js"></script>
+    <script type="text/javascript" src="js/validation.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/logistica.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/datos.js"></script>
+    <link rel="stylesheet" href="css/jquery-ui.css">    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script>
+      $( function() {
+        $( "#accordion" ).accordion();
+
+
+
+
+      } );
+
+
+     function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+   }
+
+
+
+
+
+$(document).ready(function () {
+    //se cargan automaticamente los paises porque no dependen de otro item
+
+
+        var user = getParameterByName('id');
+        $("#user").val(user);
+
+
+        function cargarRubro() {
+    
+			    $.post('https://www.minkay.com.pe/appsedes/rubro.php',
+			     function(data){
+						if (data != "[]") {
+					        var item = $.parseJSON(data);
+					        //recorremos todas las filas del resultado del proceso que obtenemos en Json
+							$("#rubro").append('<option value="0">- Rubro -</option>');
+					        $.each(item, function (i, valor) {
+					            //introducimos los option del Json obtenido
+					            if (valor.nombre !== null) {
+								    $("#rubro").append('<option value="' + valor.no_rubro_respuesta + '">' + valor.no_rubro_respuesta + '</option>');	
+								}
+					        });
+					    }
+					return false;
+			    });
+			} 
+
+
+		cargarRubro();
+    
+});
+
+
+  </script>
+    <style>
+            #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+            }
+
+            body {
+              overflow: hidden;
+            }
+/* preloader */
+            #preloader {
+            position: fixed;
+            top:0; left:0;
+            right:0; bottom:0;
+            background: #00aff2;
+            z-index: 100;
+            }
+            #loader {
+            width: 209px;
+            height: 209px;
+            position: absolute;
+            left: 35%;
+            top: 41%;
+            background: url(images/loader2.gif) no-repeat center 0;
+            margin:-50px 0 0 -50px;
+            }
+
+            .card {
+            padding-top: 20px;
+            /*margin: 10px 0 20px 0;*/
+            /*background-color: rgba(214, 224, 226, 0.2);*/
+            border-top-width: 0;
+            border-bottom-width: 2px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            }
+
+            .card .card-heading {
+            padding: 0 20px;
+            margin: 0;
+            }
+
+            .card .card-heading.simple {
+            font-size: 20px;
+            font-weight: 300;
+            color: #777;
+            border-bottom: 1px solid #e5e5e5;
+            }
+
+            .card .card-heading.image img {
+            display: inline-block;
+            width: 46px;
+            height: 46px;
+            margin-right: 15px;
+            vertical-align: top;
+            border: 0;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            }
+
+            .card .card-heading.image .card-heading-header {
+            display: inline-block;
+            vertical-align: top;
+            }
+
+            .card .card-heading.image .card-heading-header h3 {
+            margin: 0;
+            font-size: 14px;
+            line-height: 16px;
+            color: #262626;
+            }
+
+            .card .card-heading.image .card-heading-header span {
+            font-size: 12px;
+            color: #999999;
+            }
+
+            .card .card-body {
+            padding: 0 20px;
+            margin-top: 20px;
+            }
+
+            .card .card-media {
+            padding: 0 20px;
+            margin: 0 -14px;
+            }
+
+            .card .card-media img {
+            max-width: 100%;
+            max-height: 100%;
+            }
+
+            .card .card-actions {
+            min-height: 30px;
+            padding: 0 20px 20px 20px;
+            margin: 20px 0 0 0;
+            }
+
+            .card .card-comments {
+            padding: 20px;
+            margin: 0;
+            background-color: #f8f8f8;
+            }
+
+            .card .card-comments .comments-collapse-toggle {
+            padding: 0;
+            margin: 0 20px 12px 20px;
+            }
+
+            .card .card-comments .comments-collapse-toggle a,
+            .card .card-comments .comments-collapse-toggle span {
+            padding-right: 5px;
+            overflow: hidden;
+            font-size: 12px;
+            color: #999;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            }
+
+            .card-comments .media-heading {
+            font-size: 13px;
+            font-weight: bold;
+            }
+
+            .card.people {
+            position: relative;
+            display: inline-block;
+            width: 170px;
+            height: 300px;
+            padding-top: 0;
+            margin-left: 20px;
+            overflow: hidden;
+            vertical-align: top;
+            }
+
+            .card.people:first-child {
+            margin-left: 0;
+            }
+
+            .card.people .card-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 170px;
+            height: 150px;
+            background-color: #ffffff;
+            }
+
+            .card.people .card-top.green {
+            background-color: #53a93f;
+            }
+
+            .card.people .card-top.blue {
+            background-color: #427fed;
+            }
+
+            .card.people .card-info {
+            position: absolute;
+            top: 150px;
+            display: inline-block;
+            width: 100%;
+            height: 101px;
+            overflow: hidden;
+            background: #ffffff;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            }
+
+            .card.people .card-info .title {
+            display: block;
+            margin: 8px 14px 0 14px;
+            overflow: hidden;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 18px;
+            color: #404040;
+            }
+
+            .card.people .card-info .desc {
+            display: block;
+            margin: 8px 14px 0 14px;
+            overflow: hidden;
+            font-size: 12px;
+            line-height: 16px;
+            color: #737373;
+            text-overflow: ellipsis;
+            }
+
+            .card.people .card-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: inline-block;
+            width: 100%;
+            padding: 10px 20px;
+            line-height: 29px;
+            text-align: center;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            }
+
+            .card.hovercard {
+            position: relative;
+            padding-top: 0;
+            overflow: hidden;
+            text-align: center;
+            /*background-color: rgba(214, 224, 226, 0.2);*/
+            }
+
+            .card.hovercard .cardheader {
+            background: url("images/ddddddd.jpg");
+            background-size: cover;
+            height: 135px;
+            }
+
+            .card.hovercard .avatar {
+          position: relative;
+            top: -80px;
+            margin-bottom: -80px;
+            }
+
+            .card.hovercard .avatar img {
+            width: 150px;
+            height: 150px;
+            max-width: 150px;
+            max-height: 150px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.5);
+            }
+
+            .card.hovercard .info {
+            padding: 4px 8px 10px;
+            }
+
+            .card.hovercard .info .title {
+            margin-bottom: 4px;
+            font-size: 24px;
+            line-height: 1;
+            color: #262626;
+            vertical-align: middle;
+            }
+
+            .card.hovercard .info .desc {
+            overflow: hidden;
+            font-size: 12px;
+            line-height: 20px;
+            color: #737373;
+            text-overflow: ellipsis;
+            }
+
+            .card.hovercard .bottom {
+            padding: 0 20px;
+            margin-bottom: 17px;
+            }
+
+           /* .btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }*/
+            .float{
+            position:fixed;
+            width:50px;
+            height:50px;
+            bottom:40px;
+            right:16px;
+            background-color:#47669c;
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            box-shadow: 2px 2px 3px #999;
+            }
+
+            .my-float{
+            margin-top:22px;
+            }
+
+            div.upload {
+            width: 150px;
+            height: 35px;
+            background: url(images/subire.jpg);
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+            }
+
+            div.upload input {
+            display: block !important;
+            width: 157px !important;
+            height: 57px !important;
+            opacity: 0 !important;
+            overflow: hidden !important;
+            }
+
+    </style>
+   
+  </head>
+  <body>
+
+  <div id="preloader">
+    <div id="loader">&nbsp;</div>
+</div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+            <div class="mdl-layout__drawer-button">
+            <a href="index.html">
+                  <i class="material-icons">exit_to_app</i>
+            </a>
+              
+            </div>
+        <div class="mdl-layout__header-row">
+          <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="images/android-logo.png">
+          </span>
+          <!-- Add spacer, to align navigation to the right in desktop -->
+          <div class="android-header-spacer mdl-layout-spacer"></div>
+        
+          <!-- Navigation -->
+          <div class="android-navigation-container">
+            <nav class="android-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">DOC. MANTENIMIENTO PERIODICO</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tablets</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Play</a>
+            </nav>
+          </div>
+          <span class="android-mobile-title mdl-layout-title">
+            <center style="padding-left: 38%;">PERFIL</center>
+          </span>
+          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <li class="mdl-menu__item">5.0 Lollipop</li>
+            <li class="mdl-menu__item">4.4 KitKat</li>
+            <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
+            <li class="mdl-menu__item">Android History</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="android-content mdl-layout__content">
+        <a name="top"></a>
+       
+         
+          <form  method="post" id="sede" enctype="multipart/form-data" class="formulario">
+            
+                    
+                      <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+
+                                <div class="card hovercard">
+                                    <div class="cardheader">
+
+                                    </div>
+                                    <div class="avatar">
+                                       
+                                    </div>
+                                    <div class="info">
+                                        <div class="title">
+                                            <a id="nomape" style="color: #8e9fa6;"></a>
+                                        </div>
+                                    
+                                    </div>
+                                     <div >                                      
+                                        <ul class="nav nav-tabs">
+                                          <li class="active" style="width: 50%;"><a data-toggle="tab" href="#home">Observación</a></li>
+                                          <li style="width: 50%;"><a data-toggle="tab" href="#menu1" onclick="sol();">Mis solicitudes</a></li>
+                                          
+                                        </ul>
+
+                                        <div class="tab-content">
+                                          <div id="home" class="tab-pane fade in active">
+                                            
+                                            <div class="row">
+                                               
+                                              <div class="funkyradio" style="text-align: left;padding-right: 25px;padding-left: 25px;" id="mos">
+        
+                                                 <div id="opc1" >
+                                                      <div class="form-group" style="text-align: left;"> 
+                                                          
+                                                           <div  id="myModal" >
+                                                              
+                                                                
+                                                                      <div class="modal-body">
+
+
+                                                                        <div class="form-group"  >
+                                                                        <label for="exampleSelect1" style="color: #848181;">Rubro</label>
+                                                                          <select class="form-control" name="rubro" id="rubro" required="required"> 
+                                                                             
+                                                                            
+                                                                          </select>
+                                                                         </div>
+                                                                        
+                                                                        <h2 style="font-size: 14px;color: #8e8b8b;font-family: century gothic;text-align: justify;" id="texobs"></h2>  
+                                                                        
+                                                                        <label style="border: 1px solid #ffffff;color:#7b7b7b;">Observaciones:</label>
+                                                                         <textarea class="form-control" rows="3" id="comment" name="obs" style="border: 1px solid;"></textarea>
+                                                                          <br>
+                                                                          <!--  <div class="upload">
+                                                                             <center><input type="file" name="archivo" id="imagen"/></center> 
+                                                                            </div>-->
+                                                                            <input name="archivo" type="file" id="imagen"  /><br /><br>
+                                                                           <input type="button" class="btn btn-success" value="Subir imagen" id="subim" style="display: none;" />
+                                                                            
+                                                                      </div>
+                                                                          <a href="#" class="float" style="display:none;" onclick="takephotoURL()">
+                                                                             
+                                                                              <i class="material-icons" style="font-size:29px;margin-top: 10px;">camera_alt</i>
+                                                                          </a>
+                                                                    
+                                                            </div>
+                                                               <center>
+                 
+                                    <button type="submit" class="btn btn-success" id="btn-man" name="btn-man"  style="width:46%;background-color: #8e9fa6;border-color: #8e9fa6;">
+                                                                         ENVIAR
+                                                                       </button>
+                                                                </center> 
+                                      
+                                                      </div>
+                                                   </div>
+                                                        <input type="hidden"  name="user" id="user">
+                                                        <input type="hidden" name="imges" id="imge" value="">
+                                                        <input type="hidden" name="imges2" id="imge2" value="">
+                                                        <input type="hidden" name="imges3" id="imge3" value="">
+                                                        <input type="hidden" name="imges4" id="imge4" value="">
+                                                       <br>
+                                                    </div>
+                                                
+                                            </div>
+                                          </div>
+                                          <div id="menu1" class="tab-pane fade">
+                                            <div class="container" style="padding: 7px;">
+                                               <div class="" id="desti">                                                  
+                                                 
+                                            </div>
+                                            </div>
+                                          </div>
+                                    
+                                        </div>
+                                      </div>
+                                </div>
+
+                            </div>
+
+                      </div>
+                    
+         
+              
+              
+</form>
+
+      </div>
+    </div>
+    <script src="js/material.min.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+  $('#preloader').fadeOut('slow');
+  $('body').css({'overflow':'visible'});
+})
+</script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android</title>
+
+  <!-- <meta http-equiv="Refresh" content="3;url=login.html"> -->
+    <script>
+		function updateOnlineStatus(msg) {
+		  var status = document.getElementById("status");
+		  var condition = navigator.onLine ? "CONECTADO A INTERNET" : "NO TIENES CONEXION A INTERNET";
+		  status.setAttribute("class", condition);
+		  var state = document.getElementById("state");
+		  state.innerHTML = condition;
+		  var log = document.getElementById("log");
+		  
+		  if(condition=="NO TIENES CONEXION A INTERNET"){
+		  		alert(condition);
+		  		navigator.app.exitApp();
+		  }else{
+		  	setTimeout("location.href='presentacion.html'", 3000);
+		  }
+
+
+		  log.appendChild(document.createTextNode("Event: " + msg + "; status=" + condition + "\n"));
+		}
+
+		function loaded() {
+		  updateOnlineStatus("load");
+		  document.body.addEventListener("offline", function () { updateOnlineStatus("offline") }, false);
+		  document.body.addEventListener("online", function () { updateOnlineStatus("online") }, false);
+		}
+  </script>
+  <style>
+#status { height:200px; text-align:center; }
+#status.online { background:green; }
+#status.offline { background:red; }
+#log { background:yellow; border:2px solid black; white-space:pre; max-height:200px; overflow:auto; }
+  </style>
+  </head>
+
+<body style="margin: 0px;background-color: #00aff2;" onload="loaded()">
+<div id="status" style="display: none;">
+<p id="state"></p>
+</div> 
+<div id="log"  style="display: none;"></div> 
+<h1 style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);color: white;font-family: century gothic;">MINKAY</h1>
+
+</body>
+</html>
